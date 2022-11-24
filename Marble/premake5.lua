@@ -1,5 +1,5 @@
-project "MarbleApp"
-   kind "ConsoleApp"
+project "Marble"
+   kind "StaticLib"
    language "C++"
    cppdialect "C++17"
    targetdir "bin/%{cfg.buildcfg}"
@@ -9,24 +9,21 @@ project "MarbleApp"
 
    includedirs
    {
+      "src",
       "../vendor/imgui",
       "../vendor/glfw/include",
+      "../vendor/stb_image",
       "../vendor/spdlog/include",
-      
-      "../Walnut/src",
-      "../Marble/src",
-
-      "%{IncludeDir.VulkanSDK}",
-      "%{IncludeDir.glm}",
+      "%{IncludeDir.glm}"
    }
 
-    links
-    {
-        "Walnut",
-        "Marble"
-    }
+   links
+   {
+       "ImGui",
+       "GLFW"
+   }
 
-   targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
+   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
    objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
 
    filter "system:windows"
@@ -45,7 +42,6 @@ project "MarbleApp"
       symbols "On"
 
    filter "configurations:Dist"
-      kind "WindowedApp"
       defines { "WL_DIST" }
       runtime "Release"
       optimize "On"

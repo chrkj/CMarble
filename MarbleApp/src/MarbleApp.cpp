@@ -3,9 +3,13 @@
 #include "Walnut/Image.h"
 
 #include "EditorLayer.h"
+#include "Marble/Logger.h"
 
 Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 {
+	Marble::Logger::Init();
+	MARBLE_CORE_INFO("Logger initialized.");
+	
 	Walnut::ApplicationSpecification spec;
 	spec.Name = "Walnut Example";
 

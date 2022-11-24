@@ -16,7 +16,3 @@ group "Dependencies"
    include "vendor/imgui"
    include "vendor/glfw"
 group ""
-
-group "Core"
-include "Walnut"
-group ""
